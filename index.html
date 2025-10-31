@@ -12,6 +12,7 @@
     --card: rgba(255,255,255,0.96);
     --glass: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.90));
     --shadow: 0 14px 50px rgba(2,18,30,0.12);
+    --conf1: #d7f0ff; --conf2: #9fd6ff; --conf3: #4fb7ff; --confW: #ffffff;
   }
   *{box-sizing:border-box}
   html,body{height:100%;margin:0;font-family:Inter,Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:var(--accent);background:linear-gradient(160deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
@@ -53,16 +54,18 @@
   .icon-img{width:86px;height:86px;border-radius:12px;object-fit:contain;box-shadow:0 8px 20px rgba(0,0,0,0.06);background:#fff;margin-top:8px;display:flex;align-items:center;justify-content:center;}
   .muted{color:rgba(0,50,80,0.6);font-size:.95rem}
 
+  /* views */
   .view{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);width:min(860px,94%);max-width:980px;height:min(720px,92%);background:var(--card);border-radius:14px;box-shadow:0 30px 80px rgba(3,20,40,0.22);padding:18px;display:none;flex-direction:column;z-index:60;overflow:auto;opacity:0;transition:opacity .36s ease,transform .36s ease}
   .view.show{display:flex;opacity:1;transform:translate(-50%,-50%) scale(1)}
   
+  /* Back button with X guide */
   .back-dog{
     position:absolute;
     left:14px;
     top:14px;
-    width:40px;
-    height:40px;
-    border-radius:10px;
+    width:50px;
+    height:50px;
+    border-radius:12px;
     background:linear-gradient(#fff,#f3fbff);
     display:flex;
     align-items:center;
@@ -71,27 +74,18 @@
     border:1px solid rgba(0,0,0,0.06);
     z-index:70;
     box-shadow:0 8px 20px rgba(0,0,0,0.12);
-  }
-  .back-dog img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
+    font-size:1.4rem;
+    font-weight:bold;
   }
 
   .big-bouquet{width:100%;display:flex;flex-direction:column;align-items:center;gap:12px}
   .bouquet-img{max-width:520px;width:86%;height:auto;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,0.14);border:6px solid rgba(255,255,255,0.94);background:#fff}
-  .bouquet-caption{font-weight:600;color:var(--accent);margin-top:6px;text-align:center}
+  .bouquet-caption{font-weight:600;color:var(--accent);margin-bottom:6px;text-align:center} /* moved above the photo */
   .poem-text{white-space:pre-wrap;font-size:1.05rem;line-height:1.6;padding:12px;border-radius:10px;background:rgba(255,255,255,0.96);box-shadow:inset 0 4px 12px rgba(0,0,0,0.03)}
   .message-photo{max-width:360px;width:78%;height:auto;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.12);border:5px solid rgba(255,255,255,0.9)}
   .message-text{white-space: pre-wrap;font-size:1.05rem;line-height:1.5;padding:12px;border-radius:10px;background:rgba(255,255,255,0.96);box-shadow:inset 0 4px 12px rgba(0,0,0,0.03);text-align:left;direction:ltr;unicode-bidi:plaintext;}
   .playful-note{font-size:0.95rem;color:rgba(0,40,60,0.75);margin-top:10px}
-
-  @media (max-width:920px){
-    .surprise{grid-template-columns:1fr}
-    .view{width:min(94%,760px);height:min(86%,86vh)}
-    .back-dog{width:36px;height:36px}
-    .btn{padding:16px 24px;font-size:1.1rem;}
-  }
+  @media (max-width:920px){.surprise{grid-template-columns:1fr}.view{width:min(94%,760px);height:min(86%,86vh)}}
 
   canvas#confetti{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:200}
 </style>
@@ -134,19 +128,24 @@
 
 <audio id="bgMusic" loop preload="auto"></audio>
 
+<!-- Views -->
 <div class="view" id="view1">
-  <div class="back-dog" id="back1" title="Back"><img src="return.jpg" alt="Back"></div>
+  <div class="back-dog" id="back1" title="Back">
+    <span>✕</span>
+  </div>
   <h2 style="text-align:center;margin-top:6px">🌸 Bouquet</h2>
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px">
     <div class="big-bouquet">
-      <img id="bouquetLarge" class="bouquet-img" src="bouquet.jpg" alt="Bouquet photo">
       <div class="bouquet-caption">Flowers for the Prettiest Master :P</div>
+      <img id="bouquetLarge" class="bouquet-img" src="bouquet.jpg" alt="Bouquet photo">
     </div>
   </div>
 </div>
 
 <div class="view" id="view2">
-  <div class="back-dog" id="back2" title="Back"><img src="return.jpg" alt="Back"></div>
+  <div class="back-dog" id="back2" title="Back">
+    <span>✕</span>
+  </div>
   <h2 style="text-align:center;margin-top:6px">✍️ Poem</h2>
   <div style="flex:1;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:12px">
     <div class="poem-text" id="poemText">Roses blue, skies so true,
@@ -161,7 +160,9 @@ Laughter, love, and dreams come through.</div>
 </div>
 
 <div class="view" id="view3">
-  <div class="back-dog" id="back3" title="Back"><img src="return.jpg" alt="Back"></div>
+  <div class="back-dog" id="back3" title="Back">
+    <span>✕</span>
+  </div>
   <h2 style="text-align:center;margin-top:6px">💌 Message</h2>
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;gap:12px">
     <div id="typingArea" class="message-text" aria-live="polite"></div>
@@ -170,6 +171,7 @@ Laughter, love, and dreams come through.</div>
 </div>
 
 <script>
+// Elements
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const introCard = document.getElementById('introCard');
