@@ -5,66 +5,71 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Happy Birthday, MyLove</title>
 <style>
-:root{
-  --bg1:#e6f7ff; --bg2:#b3e0ff; --accent:#06384d;
-  --card:rgba(255,255,255,0.96); --glass:linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.90));
-  --shadow:0 14px 50px rgba(2,18,30,0.12);
-  --conf1:#d7f0ff; --conf2:#9fd6ff; --conf3:#4fb7ff; --confW:#ffffff;
-}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter, Poppins, system-ui, -apple-system, "Segoe UI", Roboto, Arial;color:var(--accent);
-  background:linear-gradient(160deg,var(--bg1),var(--bg2)); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+  :root{
+    --bg1: #e6f7ff;
+    --bg2: #b3e0ff;
+    --accent: #06384d;
+    --card: rgba(255,255,255,0.96);
+    --glass: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.90));
+    --shadow: 0 14px 50px rgba(2,18,30,0.12);
+    --conf1: #d7f0ff; --conf2: #9fd6ff; --conf3: #4fb7ff; --confW: #ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:var(--accent);background:linear-gradient(160deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
-/* background Snoopy wallpaper */
-body::before{
-  content:"";
-  position:fixed; inset:0; z-index:-2;
-  background-image:url('bg.jpg'); /* your uploaded background */
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  filter: brightness(0.92) blur(1px);
-  pointer-events:none; /* allow clicks on buttons */
-}
+  /* Background image */
+  body{
+    background-image: url('bg.jpg'); /* Must exactly match file name */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
-.wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;position:relative;z-index:2}
-.title{font-size:2rem;margin:0 0 12px;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,0.06)}
+  .wrap{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    position:relative;
+    z-index:2;
+  }
+  .title{font-size:2rem;margin:0 0 12px;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,0.06)}
 
-.intro{width:min(760px,94%);background:var(--card);padding:20px;border-radius:14px;box-shadow:var(--shadow);text-align:center;border:1px solid rgba(255,255,255,0.6)}
-.question{font-size:1.05rem;margin-bottom:8px}
-.btn-row{display:flex;gap:12px;justify-content:center;margin-top:12px}
-.btn{padding:12px 20px;border-radius:12px;border:0;cursor:pointer;font-weight:700;transition:transform .18s ease,box-shadow .18s ease,opacity .12s; background:linear-gradient(180deg,#fff,#f3fbff)}
-.btn.yes{background:linear-gradient(180deg,#72c8ff,#2b8fd6);color:#fff;box-shadow:0 10px 26px rgba(43,143,214,0.18)}
-.btn.no{color:var(--accent);background:linear-gradient(180deg,#fff,#f3fbff)}
-.grow{transform:scale(1.12) !important}
-@keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-10px) rotate(-6deg)}50%{transform:translateX(8px) rotate(6deg)}75%{transform:translateX(-6px) rotate(-3deg)}100%{transform:translateX(0)}}
-.shake{animation:shake .62s ease}
+  .intro{width:min(760px,94%);background:var(--card);padding:20px;border-radius:14px;box-shadow:var(--shadow);text-align:center;border:1px solid rgba(255,255,255,0.6)}
+  .question{font-size:1.05rem;margin-bottom:8px}
+  .btn-row{display:flex;gap:12px;justify-content:center;margin-top:12px}
+  .btn{padding:12px 20px;border-radius:12px;border:0;cursor:pointer;font-weight:700;transition:transform .18s ease,box-shadow .18s ease,opacity .12s; background:linear-gradient(180deg,#fff,#f3fbff)}
+  .btn.yes{background:linear-gradient(180deg,#72c8ff,#2b8fd6);color:#fff;box-shadow:0 10px 26px rgba(43,143,214,0.18)}
+  .btn.no{color:var(--accent);background:linear-gradient(180deg,#fff,#f3fbff)}
+  .grow{transform:scale(1.12) !important}
+  @keyframes shake{0%{transform:translateX(0)}25%{transform:translateX(-10px) rotate(-6deg)}50%{transform:translateX(8px) rotate(6deg)}75%{transform:translateX(-6px) rotate(-3deg)}100%{transform:translateX(0)}}
+  .shake{animation:shake .62s ease}
 
-.surprise{margin-top:26px;width:min(1120px,96%);display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;pointer-events:none}
-.surprise.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.card{background:var(--glass);border-radius:12px;padding:16px;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.7);transition:transform .18s ease}
-.card:hover{transform:translateY(-6px)}
-.card h3{margin:6px 0 8px 0;color:var(--accent)}
-.icon-img{width:86px;height:86px;border-radius:12px;object-fit:contain;box-shadow:0 8px 20px rgba(0,0,0,0.06);background:#fff;margin-top:8px;display:flex;align-items:center;justify-content:center;}
-.muted{color:rgba(0,50,80,0.6);font-size:.95rem}
+  .surprise{margin-top:26px;width:min(1120px,96%);display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;pointer-events:none}
+  .surprise.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  .card{background:var(--glass);border-radius:12px;padding:16px;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.7);transition:transform .18s ease}
+  .card:hover{transform:translateY(-6px)}
+  .card h3{margin:6px 0 8px 0;color:var(--accent)}
+  .icon-img{width:86px;height:86px;border-radius:12px;object-fit:contain;box-shadow:0 8px 20px rgba(0,0,0,0.06);background:#fff;margin-top:8px;display:flex;align-items:center;justify-content:center;}
+  .muted{color:rgba(0,50,80,0.6);font-size:.95rem}
 
-.view{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);width:min(860px,94%);max-width:980px;height:min(720px,92%);background:var(--card);border-radius:14px;box-shadow:0 30px 80px rgba(3,20,40,0.22);padding:18px;display:none;flex-direction:column;z-index:60;overflow:auto;opacity:0;transition:opacity .36s ease,transform .36s ease}
-.view.show{display:flex;opacity:1;transform:translate(-50%,-50%) scale(1)}
-.back-dog{position:absolute;left:14px;top:14px;width:52px;height:52px;border-radius:10px;background:linear-gradient(#fff,#f3fbff);display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(0,0,0,0.06);z-index:70;box-shadow:0 8px 20px rgba(0,0,0,0.12)}
+  /* views */
+  .view{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);width:min(860px,94%);max-width:980px;height:min(720px,92%);background:var(--card);border-radius:14px;box-shadow:0 30px 80px rgba(3,20,40,0.22);padding:18px;display:none;flex-direction:column;z-index:60;overflow:auto;opacity:0;transition:opacity .36s ease,transform .36s ease}
+  .view.show{display:flex;opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .back-dog{position:absolute;left:14px;top:14px;width:52px;height:52px;border-radius:10px;background:linear-gradient(#fff,#f3fbff);display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(0,0,0,0.06);z-index:70;box-shadow:0 8px 20px rgba(0,0,0,0.12)}
+  .big-bouquet{width:100%;display:flex;flex-direction:column;align-items:center;gap:12px}
+  .bouquet-img{max-width:520px;width:86%;height:auto;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,0.14);border:6px solid rgba(255,255,255,0.94);background:#fff}
+  .bouquet-caption{font-weight:600;color:var(--accent);margin-top:6px;text-align:center}
+  .poem-text{white-space:pre-wrap;font-size:1.05rem;line-height:1.6;padding:12px;border-radius:10px;background:rgba(255,255,255,0.96);box-shadow:inset 0 4px 12px rgba(0,0,0,0.03)}
+  .message-photo{max-width:360px;width:78%;height:auto;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.12);border:5px solid rgba(255,255,255,0.9)}
+  .message-text{white-space: pre-wrap;font-size:1.05rem;line-height:1.5;padding:12px;border-radius:10px;background:rgba(255,255,255,0.96);box-shadow:inset 0 4px 12px rgba(0,0,0,0.03);text-align:left;direction:ltr;unicode-bidi:plaintext;}
+  .playful-note{font-size:0.95rem;color:rgba(0,40,60,0.75);margin-top:10px}
+  @media (max-width:920px){.surprise{grid-template-columns:1fr}.view{width:min(94%,760px);height:min(86%,86vh)}}
 
-.big-bouquet{width:100%;display:flex;flex-direction:column;align-items:center;gap:12px}
-.bouquet-img{max-width:520px;width:86%;height:auto;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,0.14);border:6px solid rgba(255,255,255,0.94);background:#fff}
-.bouquet-caption{font-weight:600;color:var(--accent);margin-top:6px;text-align:center}
-
-.poem-text{white-space:pre-wrap;font-size:1.05rem;line-height:1.6;padding:12px;border-radius:10px;background:rgba(255,255,255,0.96);box-shadow:inset 0 4px 12px rgba(0,0,0,0.03)}
-
-.message-photo{max-width:360px;width:78%;height:auto;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,0.12);border:5px solid rgba(255,255,255,0.9)}
-.message-text{white-space:pre-wrap;font-size:1.05rem;line-height:1.5;padding:12px;border-radius:10px;background:rgba(255,255,255,0.96);box-shadow:inset 0 4px 12px rgba(0,0,0,0.03);text-align:left;direction:ltr;unicode-bidi:plaintext}
-.playful-note{font-size:0.95rem;color:rgba(0,40,60,0.75);margin-top:10px}
-
-@media (max-width:920px){.surprise{grid-template-columns:1fr}.view{width:min(94%,760px);height:min(86%,86vh)}}
-
-canvas#confetti{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:200}
+  /* confetti canvas */
+  canvas#confetti{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:200}
 </style>
 </head>
 <body>
@@ -83,21 +88,21 @@ canvas#confetti{position:fixed;left:0;top:0;width:100%;height:100%;pointer-event
   </div>
 
   <div class="surprise" id="surpriseArea" aria-hidden="true">
-    <div class="card" id="card1" data-box="1" role="button" tabindex="0" aria-label="Open Bouquet">
+    <div class="card" id="card1" role="button" tabindex="0" aria-label="Open Bouquet">
       <h3>🌸 Bouquet</h3>
-      <div class="icon-img"><img src="bouquet_icon.jpg" alt="Bouquet Icon"></div>
+      <img src="bouquet_icon.jpg" class="icon-img" alt="Bouquet Icon">
       <div class="bouquet-caption">Flowers for the Prettiest Master :P</div>
     </div>
 
-    <div class="card" id="card2" data-box="2" role="button" tabindex="0" aria-label="Open Poem">
+    <div class="card" id="card2" role="button" tabindex="0" aria-label="Open Poem">
       <h3>✍️ Poem</h3>
-      <div class="icon-img"><img src="poem_icon.jpg" alt="Poem Icon"></div>
+      <img src="poem_icon.jpg" class="icon-img" alt="Poem Icon">
       <div class="muted" style="margin-top:12px"><strong>Poem for the best Poet</strong></div>
     </div>
 
-    <div class="card" id="card3" data-box="3" role="button" tabindex="0" aria-label="Open Message">
+    <div class="card" id="card3" role="button" tabindex="0" aria-label="Open Message">
       <h3>💌 Message</h3>
-      <div class="icon-img"><img src="message_icon.jpg" alt="Message Icon"></div>
+      <img src="message_icon.jpg" class="icon-img" alt="Message Icon">
       <div class="muted" style="margin-top:12px"><strong>Birthday message for Master</strong></div>
     </div>
   </div>
@@ -107,27 +112,33 @@ canvas#confetti{position:fixed;left:0;top:0;width:100%;height:100%;pointer-event
 
 <!-- Views -->
 <div class="view" id="view1">
-  <div class="back-dog" id="back1"><img src="return.jpg" alt="Back"></div>
+  <div class="back-dog" id="back1" title="Back"><img src="return.jpg" alt="Back"></div>
   <h2 style="text-align:center;margin-top:6px">🌸 Bouquet</h2>
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px">
-    <img id="bouquetLarge" class="bouquet-img" src="bouquet.jpg" alt="Bouquet photo">
-    <div class="bouquet-caption">Flowers for the Prettiest Master :P</div>
+    <div class="big-bouquet">
+      <img id="bouquetLarge" class="bouquet-img" src="bouquet.jpg" alt="Bouquet photo">
+      <div class="bouquet-caption">Flowers for the Prettiest Master :P</div>
+    </div>
   </div>
 </div>
 
 <div class="view" id="view2">
-  <div class="back-dog" id="back2"><img src="return.jpg" alt="Back"></div>
+  <div class="back-dog" id="back2" title="Back"><img src="return.jpg" alt="Back"></div>
   <h2 style="text-align:center;margin-top:6px">✍️ Poem</h2>
   <div style="flex:1;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:12px">
     <div class="poem-text" id="poemText">Roses blue, skies so true,
 A smile that brightens every hue.
 On this day I wish for you,
 Laughter, love, and dreams come through.</div>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button class="btn" id="savePoem">Save Poem</button>
+      <button class="btn" id="resetPoem">Reset</button>
+    </div>
   </div>
 </div>
 
 <div class="view" id="view3">
-  <div class="back-dog" id="back3"><img src="return.jpg" alt="Back"></div>
+  <div class="back-dog" id="back3" title="Back"><img src="return.jpg" alt="Back"></div>
   <h2 style="text-align:center;margin-top:6px">💌 Message</h2>
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;gap:12px">
     <div id="typingArea" class="message-text" aria-live="polite"></div>
@@ -136,6 +147,7 @@ Laughter, love, and dreams come through.</div>
 </div>
 
 <script>
+// Elements
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const introCard = document.getElementById('introCard');
@@ -159,49 +171,40 @@ Therefore, my gift for you is my genuine love—the greatest gift you'll ever re
 
 Again, Happy Birthday, Master.`;
 
+// Yes/No behavior
 yesBtn.addEventListener('click', ()=>{
-  bgMusic.src='song.mp4';
-  bgMusic.play();
   introCard.style.display='none';
   surpriseArea.classList.add('visible');
+  bgMusic.src='song.mp4';
+  bgMusic.play().catch(()=>{});
 });
+noBtn.addEventListener('mouseenter', ()=>{noBtn.classList.add('shake'); setTimeout(()=>noBtn.classList.remove('shake'),620);});
+noBtn.addEventListener('click', ()=>{alert("Aww… wrong answer 😜 Try again, Master!");});
 
-let moveInterval;
-noBtn.addEventListener('mouseenter', ()=>{ noBtn.classList.add('shake'); setTimeout(()=> noBtn.classList.remove('shake'),620); });
-noBtn.addEventListener('mousemove', ()=>{
-  clearInterval(moveInterval);
-  moveInterval = setInterval(()=>{
-    const x = Math.random()*220-110;
-    const y = Math.random()*120-60;
-    noBtn.style.transform=`translate(${x}px,${y}px)`;
-  },260);
+// Cards open views
+card1.addEventListener('click', ()=>{view1.classList.add('show');});
+card2.addEventListener('click', ()=>{view2.classList.add('show');});
+card3.addEventListener('click', ()=>{
+  view3.classList.add('show');
+  startTyping();
 });
-noBtn.addEventListener('mouseleave', ()=>{ clearInterval(moveInterval); noBtn.style.transform='translate(0,0)'; });
-noBtn.addEventListener('click', ()=>{ alert("Aww… wrong answer 😜 Try again, Master!"); });
+// Back buttons
+back1.addEventListener('click', ()=>{view1.classList.remove('show');});
+back2.addEventListener('click', ()=>{view2.classList.remove('show');});
+back3.addEventListener('click', ()=>{view3.classList.remove('show');});
 
-function showView(viewEl){ [view1,view2,view3].forEach(v=>{ v.classList.remove('show');}); viewEl.classList.add('show'); }
-
-card1.addEventListener('click', ()=>{ showView(view1); });
-card2.addEventListener('click', ()=>{ showView(view2); });
-card3.addEventListener('click', ()=>{ showView(view3); startTyping(); });
-
-back1.addEventListener('click', ()=>{ view1.classList.remove('show'); });
-back2.addEventListener('click', ()=>{ view2.classList.remove('show'); });
-back3.addEventListener('click', ()=>{ view3.classList.remove('show'); });
-
+// Typing effect
 let typingRunning=false;
 function startTyping(){
   if(typingRunning) return;
-  typingRunning=true;
-  typingArea.textContent='';
+  typingRunning=true; typingArea.textContent='';
   let i=0;
   function step(){
     if(i<messageText.length){
-      typingArea.textContent+=messageText.charAt(i); i++;
-      let delay=28; if(messageText.charAt(i-1)===' ') delay=12;
-      if (/\p{Emoji}/u.test(messageText.charAt(i-1))) delay=220;
-      setTimeout(step,delay);
-    } else { typingRunning=false; }
+      typingArea.textContent+=messageText.charAt(i);
+      i++;
+      setTimeout(step,28);
+    }else typingRunning=false;
   }
   step();
 }
